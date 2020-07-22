@@ -1,0 +1,40 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+body {
+  background-color: black;
+  background-image: url("https://images.freeimages.com/images/large-previews/f0e/milky-way-1361636.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: white;
+  margin-left: 20px;
+  font-size: 50px;
+  font-family: sans-serif;
+}
+
+body {
+  color: white;
+  margin-left: 20px;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+#zipcode {
+  font-size: 20px;
+}
+
+#zipButton {
+  font-size: 15px;
+}
