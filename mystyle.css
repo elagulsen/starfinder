@@ -19,7 +19,6 @@ body {
 
 h1 {
   color: white;
-  margin-left: 20px;
   font-size: 50px;
   font-family: sans-serif;
 }
@@ -37,4 +36,15 @@ body {
 
 #zipButton {
   font-size: 15px;
+}
+
+#result {
+  background-color: rgba(0,0,0,.5);
+  position: relative;
+  left-margin: 50px;
+  right-margin: 50px;
+  border: 5px transparent;
+  border-radius: 20px;
+  text-align: center;
+
 }
