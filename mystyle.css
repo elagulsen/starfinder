@@ -12,7 +12,7 @@ input[type=number] {
 
 body {
   background-color: black;
-  background-image: url("https://images.freeimages.com/images/large-previews/f0e/milky-way-1361636.jpg");
+  background-image: url("img/milky_way.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -28,6 +28,7 @@ body {
   margin-left: 20px;
   font-size: 20px;
   font-family: sans-serif;
+  padding-bottom: 100px;
 }
 
 #zipcode {
@@ -46,5 +47,6 @@ body {
   border: 5px transparent;
   border-radius: 20px;
   text-align: center;
-
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
