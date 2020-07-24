@@ -10,18 +10,18 @@ const onZipButtonPress = function() {
 }
 
 const calculateNelm = function(sqm) {
-  if (sqm > 20) return ((sqm-8.89)/2+0.5);
-  if (sqm > 17) return (sqm-8.89)/2-0.5;
-  else return ((sqm-8.89)/2-1);
+  if (sqm > 20) return ((sqm-9)/2+0.5);
+  if (sqm > 18) return (sqm-9)/2-0.5;
+  return ((sqm-9)/2-1);
 }
 
 const starCount = function(value) {
   let starNum = 0;
   let nelm = calculateNelm(zipcodes[value][0]);
   let stars = [];
-  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 15) {
+  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 10) {
       starNum++;
-      if (hygfull[key][3] != "" && hygfull[key][3] != " " && hygfull[key][2] <= nelm*0.75) stars.push(hygfull[key]);
+      if (hygfull[key][3] != "" && hygfull[key][3] != " " && hygfull[key][2] <= nelm*0.66) stars.push(hygfull[key]);
     }
   return [starNum - starNum % 10, stars];
 }
@@ -82,12 +82,13 @@ function displayBortle(value) {
 
   st[1].sort(function(val1, val2) {return parseFloat(val1[2]) - parseFloat(val2[2])});
 
-  msg += "<br>Based on the sky quality meter readings in your area, you might be able to see <b>" + st[0] + " stars</b> in the sky on a clear night!<br>";
+  msg += "<br><h3>Based on the sky quality meter readings in your area, you might be able to see <b>" + st[0] + " stars</b> in the sky on a clear night!</h3><br>";
   msg += "<br>Here are some stars you might be able to see, in order of decreasing brightness: <br>";
 
   for (star in st[1]) {
     msg += "<b>" + st[1][star][3] + "</b><br>";
   }
+  msg += "<br> ...and " + (st[0] - st[1].length) + " more!";
 
   return msg;
 }
