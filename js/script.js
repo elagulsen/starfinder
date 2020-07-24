@@ -21,7 +21,7 @@ const starCount = function(value) {
   let stars = [];
   for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 15) {
       starNum++;
-      if (hygfull[key][3] != "" && hygfull[key][3] != " ") stars.push(hygfull[key]);
+      if (hygfull[key][3] != "" && hygfull[key][3] != " " && hygfull[key][2] <= nelm*0.75) stars.push(hygfull[key]);
     }
   return [starNum - starNum % 10, stars];
 }
@@ -82,7 +82,7 @@ function displayBortle(value) {
 
   st[1].sort(function(val1, val2) {return parseFloat(val1[2]) - parseFloat(val2[2])});
 
-  msg += "<br>Based on the sky quality meter readings in your area, you might be able to see " + st[0] + " stars in the sky on a clear night!<br>";
+  msg += "<br>Based on the sky quality meter readings in your area, you might be able to see <b>" + st[0] + " stars</b> in the sky on a clear night!<br>";
   msg += "<br>Here are some stars you might be able to see, in order of decreasing brightness: <br>";
 
   for (star in st[1]) {
