@@ -11,9 +11,8 @@
 <body>
 
 <h1>Skyglow Star Finder</h1>
-  <p>By Ela Gulsen, for the CMU Skyglow class.</p>
-  <br>
-  <p> To get started, input your zip code if you live in the US! </p> <br>
+  <h2>By Ela Gulsen, for the CMU Skyglow class.</h2>
+  <p>To get started, input your zip code if you live in the US! </p> <br>
 
   <input id="zipcode" class="qty" type="number" placeholder="zip code" />
   <input id="zipButton" type="button" value="submit"> <br>
@@ -23,7 +22,13 @@
   <p> Longitude: </p> -->
 
   <br><br>
-  <div id="result"> </div>
+  <div id="result"> <b> results </b> </div>
+
+    <h2>How does it work?</h2>
+    <p>The Star Finder takes into account your latitude and longitude, and matches it to Sky Quality Meter measurements taken around your area.<br>
+    These measurements are used to determine how bright, or light polluted, the night sky is in your area.<br>
+    Based on this information, as well as the position of the stars on the day you access this website, the Star Finder will generate a list of
+    stars it thinks you might be able to see outside on a clear night!</p>
 
   <script src="js/hygfull.js"></script>
   <script src="js/astro.coords.js"></script>
