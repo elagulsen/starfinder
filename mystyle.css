@@ -47,13 +47,14 @@ a {
   color: white;
 }
 
-#zipcode {
+#zipcode, #lat, #long {
   font-size: 20px;
 }
 
-#zipButton {
+#zipButton, #coordButton {
   font-size: 15px;
 }
+
 
 #result {
   background-color: rgba(0,0,0,.5);

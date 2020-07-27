@@ -1,12 +1,41 @@
 const zipButton = document.getElementById("zipButton");
 const zipInput = document.getElementById("zipcode");
+const coordButton = document.getElementById("coordButton");
+const latInput = document.getElementById("lat");
+const longInput = document.getElementById("long");
 const result = document.getElementById('result');
 
 const onZipButtonPress = function() {
   const value = zipInput.value;
   result.innerHTML = "<b>results</b>";
-  if (value in zipcodes) result.innerHTML += "<br><br>" + displayBortle(value);
-  else result.innerHTML += "<br><br>Sorry, we don't have this zipcode in our system. It's possible you typed it in wrong, or there is no SQM data for this zip code.";
+  if (value in zipcodes) result.innerHTML += "<br><br>" + displayBortle(zipcodes[value][0], zipcodes[value][1][0], zipcodes[value][1][1]);
+  else result.innerHTML += "<br><br>Sorry, we don't have this zipcode in our system. It's possible you typed it in wrong, or there is no SQM data for this zip code.\
+                            <br>You can also try inputting your latitude and longitude.";
+}
+
+const onCoordButtonPress = function() {
+  const lat = latInput.value;
+  const long = longInput.value;
+  result.innerHTML = "<b>results</b>";
+  let sqm = searchByCoords(lat, long, 0.1)
+  if (sqm != 0) result.innerHTML += "<br><br>" + displayBortle(sqm, parseFloat(lat), parseFloat(long));
+  else result.innerHTML += "<br><br>Sorry, we can't find any SQM data for these coordinates. <br>You can also try inputting your zipcode if you live in the US.";
+}
+
+const searchByCoords = function(lat, long, radius) {
+  if (radius > 0.5) return 0;
+  let sum = 0;
+  let count = 0;
+  for (var key in coords) {
+    if (Math.abs(lat - parseFloat(key)) < radius) {
+      if (Math.abs(long - parseFloat(coords[key][0])) < radius)  {
+         sum += parseFloat(coords[key][1]);
+         count++;
+      }
+    }
+  }
+  if (count > 0) return sum/count;
+  else return searchByCoords(lat, long, radius*1.1);
 }
 
 const calculateNelm = function(sqm) {
@@ -15,19 +44,19 @@ const calculateNelm = function(sqm) {
   return ((sqm-9)/2-1);
 }
 
-const starCount = function(value) {
+const starCount = function(sqm, lat, long) {
   let starNum = 0;
-  let nelm = calculateNelm(zipcodes[value][0]);
+  let nelm = calculateNelm(sqm);
   let stars = [];
-  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 15) {
+  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], lat, long)[0] > 15) {
       starNum++;
       if (hygfull[key][3] != "" && hygfull[key][3] != " " && hygfull[key][2] <= nelm*0.66) stars.push(hygfull[key]);
     }
   return [starNum - starNum % 10, stars];
 }
 
-function displayBortle(value) {
-  let sqm = zipcodes[value][0];
+const displayBortle = function(sqm, lat, long) {
+  console.log(sqm, lat, long);
   let msg = "";
   if (sqm < 17.8) {
     msg = "<img src=\"img/bortle_scale.jpeg\"><br><br><h2>Your zip code falls into class 9 of the Bortle Scale: an <b>inner city sky!</h2></b>\
@@ -78,7 +107,7 @@ function displayBortle(value) {
             <br>WOW! You are very lucky to be seeing the beauty of the true night sky, as this is EXTREMELY rare: there is virtually no light pollution in your area.\
             <br>In an excellent dark sky site, you will be able to see the full extent of the stars visible from Earth, as well as the full Milky Way.";
   }
-  let st = starCount(value);
+  let st = starCount(sqm, lat, long);
 
   st[1].sort(function(val1, val2) {return parseFloat(val1[2]) - parseFloat(val2[2])});
 
@@ -94,3 +123,4 @@ function displayBortle(value) {
 }
 
 zipButton.addEventListener('click', onZipButtonPress);
+coordButton.addEventListener('click', onCoordButtonPress);
