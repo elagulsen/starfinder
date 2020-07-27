@@ -19,7 +19,7 @@ const starCount = function(value) {
   let starNum = 0;
   let nelm = calculateNelm(zipcodes[value][0]);
   let stars = [];
-  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 10) {
+  for (var key in hygfull) if (hygfull[key][2] <= nelm && compute(hygfull[key][0], hygfull[key][1], zipcodes[value][1][0], zipcodes[value][1][1])[0] > 15) {
       starNum++;
       if (hygfull[key][3] != "" && hygfull[key][3] != " " && hygfull[key][2] <= nelm*0.66) stars.push(hygfull[key]);
     }
