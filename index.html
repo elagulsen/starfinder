@@ -11,18 +11,21 @@
 <body>
 
 <h1>Skyglow Star Finder</h1>
-  <h2>By Ela Gulsen, for the CMU Skyglow class.</h2>
+  <h2>By Ela Gulsen, for the CMU Skyglow class</h2>
+  <p>[Link to main website <a href=https://skyglow-cmu.github.io/about.html>here</a>].</p>
   <p>To get started, input your zip code if you live in the US! </p> <br>
 
   <input id="zipcode" class="qty" type="number" placeholder="zip code" />
   <input id="zipButton" type="button" value="submit"> <br>
 
   <!-- <p> If you don't live in the US, or know your coordinates, type them in here: </p>
-  <p> Latitude: </p>
-  <p> Longitude: </p> -->
+  <p> Latitude: <input id="lat" class="qty" type="number" placeholder="latitude" /></p>
+  <p> Longitude: <input id="long" class="qty" type="number" placeholder="longitude"/> </p> -->
 
   <br><br>
   <div id="result"> <b> results </b> </div>
+
+    <h1>FAQs</h1>
 
     <h3>How does it work?</h3>
     <p>The Star Finder takes into account your latitude and longitude, and matches it to Sky Quality Meter measurements taken around your area.<br>
@@ -32,10 +35,14 @@
 
     <h3>This doesn't seem right. I can see more/less stars where I am!</h3>
     <p>The number of stars you can see is an estimation, and can vary depending on factors like sky brightness, weather, and more.
-      <br>Star Finder does its best to estimate how many stars you would be able to see on a clear, cloudless night, on avarage in your area.</p>
+      <br>Star Finder does its best to estimate how many stars you would be able to see on a clear, cloudless night, on average in your area.</p>
 
     <h3>Why doesn't it work for my zip code?</h3>
     <p>Unfortunately, not every zip code has Sky Quality Meter data available!</p>
+
+    <h3>Where did you get the data from?</h3>
+    <p>The sky quality meter data is from Dark Sky Meter, which you can access <a href="https://www.darkskymeter.com/index.php">here</a>.
+    <br>The star data was taken from the HYG database, which you can access <a href="http://www.astronexus.com/hyg">here</a>.</p>
 
   <script src="js/hygfull.js"></script>
   <script src="js/astro.coords.js"></script>
