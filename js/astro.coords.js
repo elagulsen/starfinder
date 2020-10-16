@@ -31,8 +31,8 @@ function coord_to_horizon( utc, ra, dec, lat, lon ) {
     const az  = Math.acos(cos_az);
 
     // convert radians to degrees
-    const hrz_altitude = alt*180/Math.PI;
-    const hrz_azimuth  = az*180/Math.PI;
+    let hrz_altitude = alt*180/Math.PI;
+    let hrz_azimuth  = az*180/Math.PI;
 
     // choose hemisphere
     if (Math.sin(ha) > 0) hrz_azimuth = 360 - hrz_azimuth;
